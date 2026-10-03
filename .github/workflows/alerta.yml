@@ -1,1 +1,24 @@
+name: Alerta DevOps ITLA
 
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notificacion:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Verificar Hola Mundo
+        run: |
+          echo "Verificando index.html..."
+          test -f index.html
+
+      - name: Enviar notificacion
+        run: |
+          curl -d "Nuevo codigo subido a la rama main - Practica DevOps ITLA" \
+          https://ntfy.sh/devops-itla
